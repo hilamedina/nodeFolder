@@ -13,17 +13,25 @@ function App() {
       'http://localhost:3000/users/'
       // headers: { 'Access-Control-Allow-Origin': '*' },
     );
-    setdata(responseData);
+    setdata(responseData.data);
     //put my api inside my data
   };
   useEffect(() => {
     getData();
   }, []);
-  console.log(data);
 
-  //its like component did mount -
-  //render = loading data.
-  return <div className="App">Home</div>;
+  console.log('hila', data);
+
+  const dataMap = () => {
+    return data.map((dataobject) => {
+      <div>
+        <h1>{dataobject.id}</h1>
+        <h1>{dataobject.cash}</h1>
+        <h1>{dataobject.credit}</h1>
+      </div>;
+    });
+  };
+
+  return <div className="App">hila{dataMap()}</div>;
 }
-
 export default App;
